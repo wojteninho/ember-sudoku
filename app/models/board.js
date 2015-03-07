@@ -1,18 +1,18 @@
 import Ember from 'ember';
-import Cell from '../models/cell';
+import Cell from './cell';
 
 export default Ember.Object.extend({
-    cells: null,
+    cells: [],
 
     init: function () {
-        this.cells = Ember.A([]);
-
         for (var x = 0; x < 9; x++) {
             for (var y = 0; y < 9; y++) {
-                this.cells.addObject(Cell.create({
-                    x: x,
-                    y: y
-                }));
+                this.get('cells').addObject(
+                    Cell.create({
+                        x: x,
+                        y: y
+                    })
+                );
             }
         }
     },
