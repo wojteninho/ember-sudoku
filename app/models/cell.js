@@ -1,19 +1,22 @@
 import Ember from 'ember';
 
 export default Ember.Object.extend({
-    digit: null,
-    x: null,
-    y: null,
 
-    isInBlockWith: function (cell) {
-        return cell !== null;
-    },
+  digit: null,
+  x: null,
+  y: null,
+  isActive: false,
 
-    isInRowWith: function (cell) {
-        return cell.get('x') === this.get('x');
-    },
+  isSame: function(cell) {
+    return cell.get('x') === this.get('x') && cell.get('y') === this.get('y');
+  },
 
-    isInColumnWith: function (cell) {
-        return cell.get('y') === this.get('y');
-    }
+  isInRowWith: function(cell) {
+    return cell.get('x') === this.get('x');
+  },
+
+  isInColumnWith: function(cell) {
+    return cell.get('y') === this.get('y');
+  }
+
 });
