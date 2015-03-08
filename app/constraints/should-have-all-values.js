@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Object.extend({
 
+  allValues: [1, 2, 3, 4, 5, 6, 7, 8, 9],
   cells: null,
 
   validate: function() {
@@ -12,7 +13,9 @@ export default Ember.Object.extend({
       })
       .compact();
 
-    return values.length === values.uniq().length;
+    return this.get('allValues').every(function(value) {
+      return values.contains(value);
+    });
   }
-  
+
 });
