@@ -1,0 +1,45 @@
+.board {
+    border: 2px solid #7A7A7A;
+    float: left;
+    width: 924px;
+}
+
+.block {
+    border: 1px solid #7A7A7A;
+    float: left;
+    width: 306px;
+}
+
+.cell {
+    border: 1px solid #7A7A7A;
+    float: left;
+    height: 100px;
+    position: relative;
+    width: 100px;
+    text-align: center;
+}
+
+.cell.active {
+    background-color: red;
+}
+
+.cell:hover {
+    cursor: pointer;
+}
+
+.cell .point {
+    background: red;
+    float: left;
+    font-size: 0.8em;
+    padding: 2px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.cell .number {
+    float: left;
+    font-size: 2em;
+    line-height: 100px;
+    width: 100px;
+}

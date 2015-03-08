@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Object.extend({
 
-  digit: null,
+  number: null,
   x: null,
   y: null,
   isActive: false,

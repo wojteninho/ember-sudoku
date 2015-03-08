@@ -74,6 +74,28 @@ export default Ember.Object.extend({
     return this.get('cells').filter(function (cell) {
       return cell.isInColumnWith(relativeCell);
     });
+  },
+
+  cellLeftFor: function(relativeCell) {
+    return this.cellAt(relativeCell.get('x'), relativeCell.get('y') - 1);
+  },
+
+  cellUpFor: function(relativeCell) {
+    return this.cellAt(relativeCell.get('x') - 1, relativeCell.get('y'));
+  },
+
+  cellRightFor: function(relativeCell) {
+    return this.cellAt(relativeCell.get('x'), relativeCell.get('y') + 1 );
+  },
+
+  cellDownFor: function(relativeCell) {
+    return this.cellAt(relativeCell.get('x') + 1, relativeCell.get('y'));
+  },
+
+  cellAt: function(x, y) {
+    return this.get('cells').find(function (cell) {
+      return cell.get('x') === x && cell.get('y') === y;
+    });
   }
 
 });
