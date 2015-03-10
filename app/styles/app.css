@@ -20,7 +20,11 @@
 }
 
 .cell.active {
-    background-color: red;
+    background-color: #ABE188;
+}
+
+.cell.invalid {
+    background-color: #D32121;
 }
 
 .cell:hover {

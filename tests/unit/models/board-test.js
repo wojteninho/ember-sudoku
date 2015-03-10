@@ -102,6 +102,30 @@ describe('Board', function() {
     });
   });
 
+  it('Board.rows() returns array', function() {
+    var rows = Board.create().get('rows');
+
+    assert.isArray(rows);
+    expect(rows.length).to.be.equal(9);
+
+    rows.forEach(function(row) {
+      assert.isArray(row);
+      expect(row.length).to.be.equal(9);
+    });
+  });
+
+  it('Board.columns() returns array', function() {
+    var columns = Board.create().get('columns');
+
+    assert.isArray(columns);
+    expect(columns.length).to.be.equal(9);
+
+    columns.forEach(function(column) {
+      assert.isArray(column);
+      expect(column.length).to.be.equal(9);
+    });
+  });
+
   it('Board.blockCellsFor() returns empty array for invalid relative cell', function() {
     var board = Board.create();
     var relativeCell = Cell.create({

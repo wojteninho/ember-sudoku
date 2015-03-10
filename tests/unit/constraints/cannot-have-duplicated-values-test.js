@@ -26,7 +26,10 @@ describe('CannotHaveDuplicatedValuesConstraint', function() {
       ]
     });
 
-    expect(constraint.validate()).to.be.true;
+    var result = constraint.validate();
+    assert.isObject(result);
+    expect(result.get('valid')).to.be.true;
+    expect(result.get('invalidCells').length).to.be.eq(0);
   });
 
   it('CannotHaveDuplicatedValuesConstraint.validate() pass for non duplicated values & nulls', function() {
@@ -44,7 +47,10 @@ describe('CannotHaveDuplicatedValuesConstraint', function() {
       ]
     });
 
-    expect(constraint.validate()).to.be.true;
+    var result = constraint.validate();
+    assert.isObject(result);
+    expect(result.get('valid')).to.be.true;
+    expect(result.get('invalidCells').length).to.be.eq(0);
   });
 
   it('CannotHaveDuplicatedValuesConstraint.validate() pass for non duplicated values', function() {
@@ -62,15 +68,19 @@ describe('CannotHaveDuplicatedValuesConstraint', function() {
       ]
     });
 
-    expect(constraint.validate()).to.be.true;
+    var result = constraint.validate();
+    assert.isObject(result);
+    expect(result.get('valid')).to.be.true;
+    expect(result.get('invalidCells').length).to.be.eq(0);
   });
 
   it('CannotHaveDuplicatedValuesConstraint.validate() fails for duplicated values & nulls', function() {
+    var duplicatedNumber = 1;
     var constraint = CannotHaveDuplicatedValuesConstraint.create({
       cells: [
-        Cell.create({number: 1}),
-        Cell.create({number: 1}),
-        Cell.create({number: null}),
+        Cell.create({number: duplicatedNumber}),
+        Cell.create({number: duplicatedNumber}),
+        Cell.create({number: duplicatedNumber}),
         Cell.create({number: null}),
         Cell.create({number: null}),
         Cell.create({number: null}),
@@ -80,6 +90,10 @@ describe('CannotHaveDuplicatedValuesConstraint', function() {
       ]
     });
 
-    expect(constraint.validate()).to.be.false;
+    var result = constraint.validate();
+    assert.isObject(result);
+    expect(result.get('valid')).to.be.false;
+    expect(result.get('invalidCells').length).to.be.eq(3);
+    expect(result.get('invalidCells.firstObject.number')).to.be.eq(duplicatedNumber);
   });
 });

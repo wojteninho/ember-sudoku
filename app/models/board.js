@@ -6,6 +6,7 @@ export default Ember.Object.extend({
 
   cells: null,
   blocks: null,
+  constraints: null,
 
   init: function () {
     var board = this;
@@ -15,6 +16,7 @@ export default Ember.Object.extend({
     board._super();
     board.set('cells', []);
     board.set('blocks', []);
+    board.set('constraints', []);
 
     for (x = 0; x < 9; x++) {
       for (y = 0; y < 9; y++) {
@@ -51,6 +53,24 @@ export default Ember.Object.extend({
       }
     }
   },
+
+  rows: function() {
+    var rows = [];
+    for (var x = 0; x < 9; x++) {
+      rows.addObject(this.rowCellsFor(this.cellAt(x, x)));
+    }
+
+    return rows;
+  }.property(),
+
+  columns: function() {
+    var columns = [];
+    for (var y = 0; y < 9; y++) {
+      columns.addObject(this.columnCellsFor(this.cellAt(y, y)));
+    }
+
+    return columns;
+  }.property(),
 
   blockCellsFor: function (relativeCell) {
     var block = this.get('blocks').find(function (block) {

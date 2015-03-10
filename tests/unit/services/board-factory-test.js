@@ -13,8 +13,6 @@ describeModule(
   'service:board-factory',
   'BoardFactoryService',
   {
-    // Specify the other units that are required for this test.
-    // needs: ['service:foo']
   },
   function() {
     it('createBoard()', function() {

@@ -41,6 +41,7 @@ export default Ember.Controller.extend({
 
     numberPress: function(cell, number) {
       cell.set('number', number);
+      this.validateBoard();
     }
   },
 
@@ -69,6 +70,17 @@ export default Ember.Controller.extend({
 
     if (undefined !== newActiveCell) {
       this.activateCell(newActiveCell);
+    }
+  },
+
+  validateBoard: function() {
+    var result = this.get('boardValidatorService').validate(this.get('board'));
+
+    if (!result.get('valid')) {
+      this.get('board.cells').setEach('isValid', true);
+      result.get('invalidCells').forEach(function(cell) {
+        cell.set('isValid', false);
+      });
     }
   }
 

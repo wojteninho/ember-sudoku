@@ -6,6 +6,7 @@ export default Ember.Object.extend({
   x: null,
   y: null,
   isActive: false,
+  isValid: true,
 
   isSame: function(cell) {
     return cell.get('x') === this.get('x') && cell.get('y') === this.get('y');

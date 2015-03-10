@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import ConstraintResult from 'sudoku/constraints/result';
 
 export default Ember.Object.extend({
 
@@ -13,8 +14,10 @@ export default Ember.Object.extend({
       })
       .compact();
 
-    return this.get('allValues').every(function(value) {
-      return values.contains(value);
+    return ConstraintResult.create({
+      valid: this.get('allValues').every(function(value) {
+        return values.contains(value);
+      })
     });
   }
 

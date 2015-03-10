@@ -26,7 +26,9 @@ describe('ShouldHaveAllValuesConstraint', function() {
       ]
     });
 
-    expect(constraint.validate()).to.be.false;
+    var result = constraint.validate();
+    assert.isObject(result);
+    expect(result.get('valid')).to.be.false;
   });
 
   it('ShouldHaveAllValuesConstraint.validate() fails for duplicated values', function() {
@@ -44,7 +46,9 @@ describe('ShouldHaveAllValuesConstraint', function() {
       ]
     });
 
-    expect(constraint.validate()).to.be.false;
+    var result = constraint.validate();
+    assert.isObject(result);
+    expect(result.get('valid')).to.be.false;
   });
 
   it('ShouldHaveAllValuesConstraint.validate() fails for non all values', function() {
@@ -62,7 +66,9 @@ describe('ShouldHaveAllValuesConstraint', function() {
       ]
     });
 
-    expect(constraint.validate()).to.be.false;
+    var result = constraint.validate();
+    assert.isObject(result);
+    expect(result.get('valid')).to.be.false;
   });
 
   it('ShouldHaveAllValuesConstraint.validate() pass for unique all values', function() {
@@ -80,6 +86,8 @@ describe('ShouldHaveAllValuesConstraint', function() {
       ]
     });
 
-    expect(constraint.validate()).to.be.true;
+    var result = constraint.validate();
+    assert.isObject(result);
+    expect(result.get('valid')).to.be.true;
   });
 });
