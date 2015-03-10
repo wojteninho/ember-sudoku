@@ -27,7 +27,7 @@ var numberCharCodes = [
 export default Ember.View.extend({
 
   templateName: 'cell',
-  classNameBindings: [':cell', 'isActive:active', 'isValid::invalid'],
+  classNameBindings: [':cell', 'isActive:active', 'isValid::invalid', 'isEnabled::disabled'],
 
   isActive: function() {
     return this.get('cell.isActive');
@@ -36,6 +36,10 @@ export default Ember.View.extend({
   isValid: function() {
     return this.get('cell.isValid');
   }.property('cell.isValid'),
+
+  isEnabled: function() {
+    return this.get('cell.isEnabled');
+  }.property('cell.isEnabled'),
 
   becomeFocused: function() {
     this.$().attr({ tabindex: 1 });

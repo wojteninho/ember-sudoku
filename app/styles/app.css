@@ -27,6 +27,10 @@
     background-color: #D32121;
 }
 
+.cell.disabled {
+    background-color: #AAAAAA;
+}
+
 .cell:hover {
     cursor: pointer;
 }

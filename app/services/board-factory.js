@@ -6,7 +6,7 @@ import ShouldHaveAllValuesConstraint from 'sudoku/constraints/should-have-all-va
 export default Ember.Object.extend({
 
   createBoard: function() {
-    return this.applyConstraints(Board.create());
+    return this.initialize(this.applyConstraints(Board.create()));
   },
 
   applyConstraints: function(board) {
@@ -33,7 +33,7 @@ export default Ember.Object.extend({
   },
 
   initialize: function(board) {
-    return board;
+    return this.get('boardInitializerService').initialize(board);
   }
 
 });
