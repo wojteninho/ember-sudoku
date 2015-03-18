@@ -31,8 +31,12 @@
     background-color: #AAAAAA;
 }
 
-.cell:hover {
+.cell.enabled:hover {
     cursor: pointer;
+}
+
+.cell.disabled:hover {
+    cursor: not-allowed;
 }
 
 .cell .point {

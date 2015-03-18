@@ -46,8 +46,10 @@ export default Ember.Controller.extend({
   },
 
   activateCell: function(cell) {
-    this.get('board.cells').setEach('isActive', false);
-    cell.set('isActive', true);
+    if (cell.get('isEnabled')) {
+      this.get('board.cells').setEach('isActive', false);
+      cell.set('isActive', true);
+    }
   },
 
   moveCell: function(cell, direction) {

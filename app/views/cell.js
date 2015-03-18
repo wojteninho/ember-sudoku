@@ -27,7 +27,7 @@ var numberCharCodes = [
 export default Ember.View.extend({
 
   templateName: 'cell',
-  classNameBindings: [':cell', 'isActive:active', 'isValid::invalid', 'isEnabled::disabled'],
+  classNameBindings: [':cell', 'isActive:active', 'isValid::invalid', 'isEnabled:enabled:disabled'],
 
   isActive: function() {
     return this.get('cell.isActive');
@@ -73,7 +73,7 @@ export default Ember.View.extend({
 
     keyPress: function(event, view) {
       if (numberCharCodes.contains(event.which)) {
-        view.get('controller').send('numberPress', view.get('cell'), String.fromCharCode(event.which));
+        view.get('controller').send('numberPress', view.get('cell'), Number.parseInt(String.fromCharCode(event.which)));
       }
     }
   })
