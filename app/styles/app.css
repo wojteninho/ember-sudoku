@@ -31,6 +31,10 @@
     background-color: #AAAAAA;
 }
 
+.cell.disabled.invalid {
+    background-color: #931717;
+}
+
 .cell.enabled:hover {
     cursor: pointer;
 }
