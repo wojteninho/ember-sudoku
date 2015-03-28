@@ -10,21 +10,28 @@ var ARROWS_MAP = {
 export default Ember.Controller.extend({
 
   board: null,
-
-  init: function() {
-    this._super();
-    this.board = this.get('boardFactoryService').createBoard();
-
-    console.log(this.board);
-  },
+  isStarted: false,
+  isPaused: false,
+  isEnded: false,
 
   actions: {
-    mouseEnter: function(cell) {
-//      this.get('board').blockCellsFor(cell).setEach('isActive', true);
+    gameStart: function() {
+      this.set('board', this.get('boardFactoryService').createBoard());
+      this.set('isStarted', true);
+      this.set('isPaused', false);
+      this.set('isEnded', false);
     },
 
-    mouseLeave: function(cell) {
-//      this.get('board').blockCellsFor(cell).setEach('isActive', false);
+    gamePause: function() {
+      this.set('isPaused', true);
+    },
+
+    gameResume: function() {
+      this.set('isPaused', false);
+    },
+
+    gameEnd: function() {
+      this.set('isEnded', true);
     },
 
     click: function(cell) {
@@ -41,7 +48,6 @@ export default Ember.Controller.extend({
 
     numberPress: function(cell, number) {
       cell.set('number', number);
-      this.validateBoard();
     }
   },
 
@@ -84,6 +90,22 @@ export default Ember.Controller.extend({
         cell.set('isValid', false);
       });
     }
-  }
+  }.observes('board.cells.@each.number'),
+
+  isBoardVisible: function() {
+    return this.get('isStarted') && !this.get('isPaused') && !this.get('isEnded');
+  }.property('isStarted', 'isPaused', 'isEnded'),
+
+  isStartButtonVisible: function() {
+    return !this.get('isStarted') || this.get('isEnded');
+  }.property('isStarted', 'isEnded'),
+
+  isPauseButtonVisible: function() {
+    return this.get('isStarted') && !this.get('isPaused') && !this.get('isEnded');
+  }.property('isStarted', 'isPaused', 'isEnded'),
+
+  isResumeButtonVisible: function() {
+    return this.get('isStarted') && this.get('isPaused') && !this.get('isEnded');
+  }.property('isStarted', 'isPaused', 'isEnded')
 
 });

@@ -1,12 +1,25 @@
-<div class="board">
-    {{#each block in board.blocks}}
-        <div class="block">
-            {{#each cell in block.cells}}
-                {{view 'cell' cell=cell}}
-            {{/each}}
-        </div>
-    {{/each}}
+{{#if isStartButtonVisible}}
+    <button {{action 'gameStart'}}>start</button>
+{{/if}}
 
-</div>
+{{#if isResumeButtonVisible}}
+    <button {{action 'gameResume'}}>resume</button>
+{{/if}}
 
-{{outlet}}
+{{#if isPauseButtonVisible}}
+    <button {{action 'gamePause'}}>pause</button>
+{{/if}}
+
+{{#if isBoardVisible}}
+    <div class="board">
+        {{#each block in board.blocks}}
+            <div class="block">
+                {{#each cell in block.cells}}
+                    {{view 'cell' cell=cell}}
+                {{/each}}
+            </div>
+        {{/each}}
+    </div>
+
+    <button {{action 'gameEnd'}}>end</button>
+{{/if}}

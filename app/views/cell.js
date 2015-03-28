@@ -47,14 +47,6 @@ export default Ember.View.extend({
   }.observes('cell.isActive'),
 
   eventManager: Ember.Object.create({
-    mouseEnter: function(event, view) {
-      view.get('controller').send('mouseEnter', view.get('cell'));
-    },
-
-    mouseLeave: function(event, view) {
-      view.get('controller').send('mouseLeave', view.get('cell'));
-    },
-
     click: function(event, view) {
       view.get('controller').send('click', view.get('cell'));
     },
