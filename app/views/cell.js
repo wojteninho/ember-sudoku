@@ -27,7 +27,7 @@ var numberCharCodes = [
 export default Ember.View.extend({
 
   templateName: 'cell',
-  classNameBindings: [':cell', 'isActive:active', 'isValid::invalid', 'isEnabled:enabled:disabled'],
+  classNameBindings: [':cell', ':col-md-4', ':text-center' , 'isActive:active', 'isValid::invalid', 'isEnabled:enabled:disabled'],
 
   isActive: function() {
     return this.get('cell.isActive');

@@ -106,6 +106,10 @@ export default Ember.Controller.extend({
 
   isResumeButtonVisible: function() {
     return this.get('isStarted') && this.get('isPaused') && !this.get('isEnded');
-  }.property('isStarted', 'isPaused', 'isEnded')
+  }.property('isStarted', 'isPaused', 'isEnded'),
+
+  isEndButtonVisible: function() {
+    return this.get('isStarted') && !this.get('isEnded');
+  }.property('isStarted', 'isEnded')
 
 });

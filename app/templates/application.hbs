@@ -1,25 +1,119 @@
-{{#if isStartButtonVisible}}
-    <button {{action 'gameStart'}}>start</button>
-{{/if}}
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="http://wojciech-olszewski.github.io/" target="_blank">wojciech-olszewski.github.io</a>
+    </div>
+    <div class="navbar-right">
+      <a class="follow-icon" href="https://twitter.com/szewloj" target="_blank">
+        <img src="img/twitter-32.png" />
+      </a>
+      <a class="follow-icon" href="https://www.linkedin.com/in/wolszewski" target="_blank">
+        <img src="img/linkedin-32.png" />
+      </a>
+    </div>
+  </div>
+</nav>
 
-{{#if isResumeButtonVisible}}
-    <button {{action 'gameResume'}}>resume</button>
-{{/if}}
+<div class="jumbotron">
+  <div class="container">
+    <h1>Sudoku <small>written in ember.js</small></h1>
+    <p>Sudoku game written in ember.js framework according to TDD.</p>
+    <p>
+      <a class="btn btn-primary btn-sm" href="http://emberjs.com/">Ember.js</a>
+      <a class="btn btn-primary btn-sm" href="http://mochajs.org/">Mocha.js</a>
+      <a class="btn btn-primary btn-sm" href="http://chaijs.com/">Chai.js</a>
+      <a class="btn btn-primary btn-sm" href="http://getbootstrap.com/">Bootstrap</a>
+    </p>
+  </div>
+</div>
 
-{{#if isPauseButtonVisible}}
-    <button {{action 'gamePause'}}>pause</button>
-{{/if}}
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <h2>Rules</h2>
+      <p class="text-justify">The objective is to fill a 9×9 grid with digits so that each column, each row, and each of the nine 3×3 sub-grids that compose the grid (also called "boxes") contains all of the digits from 1 to 9. The puzzle setter provides a partially completed grid, which for a well-posed puzzle has a unique solution.</p>
 
-{{#if isBoardVisible}}
-    <div class="board">
-        {{#each block in board.blocks}}
-            <div class="block">
-                {{#each cell in block.cells}}
-                    {{view 'cell' cell=cell}}
-                {{/each}}
-            </div>
-        {{/each}}
+      <h2>Controls</h2>
+      <p class="text-justify">Pick active cell using left mouse button or arrows.</p>
+
+      <button type="button" class="btn btn-default btn-xs">
+        <span class="glyphicon glyphicon-arrow-left"></span>
+      </button>
+
+      <button type="button" class="btn btn-default btn-xs">
+        <span class="glyphicon glyphicon-arrow-right"></span>
+      </button>
+
+      <button type="button" class="btn btn-default btn-xs">
+        <span class="glyphicon glyphicon-arrow-up"></span>
+      </button>
+
+      <button type="button" class="btn btn-default btn-xs">
+        <span class="glyphicon glyphicon-arrow-down"></span>
+      </button>
+
+      <br />
+      <br />
+
+      <p class="text-justify">Fill digit using num keys</p>
+
+      <button type="button" class="btn btn-default btn-xs">1</button>
+      <button type="button" class="btn btn-default btn-xs">2</button>
+      <button type="button" class="btn btn-default btn-xs">3</button>
+      <button type="button" class="btn btn-default btn-xs">4</button>
+      <button type="button" class="btn btn-default btn-xs">5</button>
+      <button type="button" class="btn btn-default btn-xs">6</button>
+      <button type="button" class="btn btn-default btn-xs">7</button>
+      <button type="button" class="btn btn-default btn-xs">8</button>
+      <button type="button" class="btn btn-default btn-xs">9</button>
     </div>
 
-    <button {{action 'gameEnd'}}>end</button>
-{{/if}}
+    <div class="col-md-9">
+      <div class="well center-block">
+        {{#if isStartButtonVisible}}
+          <button class="btn btn-success btn-lg btn-block" {{action 'gameStart'}}>Start new game</button>
+        {{/if}}
+
+        {{#if isResumeButtonVisible}}
+          <button class="btn btn-success btn-lg btn-block" {{action 'gameResume'}}>Resume</button>
+        {{/if}}
+
+        {{#if isPauseButtonVisible}}
+          <button class="btn btn-info btn-lg btn-block" {{action 'gamePause'}}>Pause</button>
+        {{/if}}
+
+        {{#if isEndButtonVisible}}
+          <button class="btn btn-warning btn-lg btn-block" {{action 'gameEnd'}}>End</button>
+        {{/if}}
+      </div>
+
+      {{#if isBoardVisible}}
+        <div class="row well center-block">
+          <div class="board">
+            {{#each block in board.blocks}}
+              <div class="block col-md-4">
+                {{#each cell in block.cells}}
+                  {{view 'cell' cell=cell}}
+                {{/each}}
+              </div>
+            {{/each}}
+          </div>
+        </div>
+      {{/if}}
+    </div>
+  </div>
+
+  <hr>
+
+  <footer>
+    <div class="row">
+      <div class="col-md-6">
+        <p>&copy; <a href="http://wojciech-olszewski.github.io/" target="_blank">wojciech-olszewski.github.io</a></p>
+      </div>
+      <div class="col-md-6">
+        <p class="text-right">Source code at <a href="https://github.com/wojciech-olszewski/ember-sudoku" target="_blank"><img src="img/github-32.png" /> https://github.com/wojciech-olszewski/ember-sudoku</a></p>
+      </div>
+    </div>
+
+  </footer>
+</div>

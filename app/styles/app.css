@@ -1,38 +1,42 @@
-.board {
-    border: 2px solid #7A7A7A;
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+.follow-icon {
     float: left;
-    width: 924px;
+    height: 50px;
+    padding: 9px;
 }
 
 .block {
-    border: 1px solid #7A7A7A;
-    float: left;
-    width: 306px;
+    margin: 5px 0;
+    padding: 0 5px;
 }
 
 .cell {
-    border: 1px solid #7A7A7A;
-    float: left;
-    height: 100px;
-    position: relative;
-    width: 100px;
-    text-align: center;
+    background: #FFFFFF;
+    border: 1px solid #F5F5F5;
+    font-size: 2em;
+    height: 84px;
+    line-height: 54px;
+    padding: 15px;
 }
 
 .cell.active {
-    background-color: #ABE188;
+    background-color: #D9EDF7;
 }
 
 .cell.invalid {
-    background-color: #D32121;
+    background-color: #F2DEDE;
 }
 
 .cell.disabled {
-    background-color: #AAAAAA;
+    background-color: #777777;
 }
 
 .cell.disabled.invalid {
-    background-color: #931717;
+    background-color: #ED6F6F;
 }
 
 .cell.enabled:hover {
@@ -41,21 +45,4 @@
 
 .cell.disabled:hover {
     cursor: not-allowed;
-}
-
-.cell .point {
-    background: red;
-    float: left;
-    font-size: 0.8em;
-    padding: 2px;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-}
-
-.cell .number {
-    float: left;
-    font-size: 2em;
-    line-height: 100px;
-    width: 100px;
 }
