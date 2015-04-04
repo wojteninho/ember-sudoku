@@ -13,6 +13,7 @@ export default Ember.Controller.extend({
   isStarted: false,
   isPaused: false,
   isEnded: false,
+  isValid: false,
 
   actions: {
     gameStart: function() {
@@ -20,6 +21,7 @@ export default Ember.Controller.extend({
       this.set('isStarted', true);
       this.set('isPaused', false);
       this.set('isEnded', false);
+      this.set('isValid', false);
     },
 
     gamePause: function() {
@@ -81,8 +83,9 @@ export default Ember.Controller.extend({
     }
   },
 
-  validateBoard: function() {
+  validateBoardListener: function() {
     var result = this.get('boardValidatorService').validate(this.get('board'));
+    this.set('isValid' ,result.get('valid'));
 
     if (!result.get('valid')) {
       this.get('board.cells').setEach('isValid', true);
@@ -91,6 +94,16 @@ export default Ember.Controller.extend({
       });
     }
   }.observes('board.cells.@each.number'),
+
+  gameEndListener: function() {
+    var allCellsFilledIn = this.get('board.cells').every(function(cell) {
+      return null !== cell.get('number');
+    });
+
+    if (this.get('isValid') && allCellsFilledIn) {
+      this.set('isEnded', true);
+    }
+  }.observes('isValid'),
 
   isBoardVisible: function() {
     return this.get('isStarted') && !this.get('isPaused') && !this.get('isEnded');
